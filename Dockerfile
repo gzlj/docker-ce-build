@@ -29,6 +29,8 @@ FROM golang:1.10.6 AS base
 # Remove this once the other scripts uses something else to detect the version
 ENV GO_VERSION 1.10.6
 
+# dlv for debug
+RUN go get -u -v github.com/go-delve/delve/cmd/dlv
 
 # allow replacing httpredir or deb mirror
 ARG APT_MIRROR=deb.debian.org
@@ -240,8 +242,7 @@ ENV GOMETALINTER_OPTS="--deadline=2m"
 WORKDIR /go/src/github.com/docker/docker
 VOLUME /var/lib/docker
 
-# dlv for debug
-RUN go get -u -v github.com/go-delve/delve/cmd/dlv
+
 
 # Wrap all commands in the "docker-in-docker" script to allow nested containers
 ENTRYPOINT ["hack/dind"]
