@@ -28,9 +28,7 @@ FROM golang:1.10.6 AS base
 # FIXME(vdemeester) this is kept for other script depending on it to not fail right away
 # Remove this once the other scripts uses something else to detect the version
 ENV GO_VERSION 1.10.6
-ENV http_proxy http://10.10.112.102:1080
-ENV https_proxy http://10.10.112.102:1080
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+
 
 # allow replacing httpredir or deb mirror
 ARG APT_MIRROR=deb.debian.org
