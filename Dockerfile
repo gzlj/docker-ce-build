@@ -240,8 +240,8 @@ ENV GOMETALINTER_OPTS="--deadline=2m"
 WORKDIR /go/src/github.com/docker/docker
 VOLUME /var/lib/docker
 
-# dlv
-go get -u -v github.com/go-delve/delve/cmd/dlv
+# dlv for debug
+RUN go get -u -v github.com/go-delve/delve/cmd/dlv
 
 # Wrap all commands in the "docker-in-docker" script to allow nested containers
 ENTRYPOINT ["hack/dind"]
