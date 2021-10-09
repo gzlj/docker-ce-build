@@ -34,7 +34,8 @@ RUN go get -u -v github.com/go-delve/delve/cmd/dlv
 
 # allow replacing httpredir or deb mirror
 ARG APT_MIRROR=deb.debian.org
-RUN sed -ri "s/(httpredir|deb).debian.org/$APT_MIRROR/g" /etc/apt/sources.list
+#RUN sed -ri "s/(httpredir|deb).debian.org/$APT_MIRROR/g" /etc/apt/sources.list
+RUN sed -i 's#http://deb.debian.org#https://mirrors.163.com#g' /etc/apt/sources.list
 
 FROM base AS criu
 # Install CRIU for checkpoint/restore support
